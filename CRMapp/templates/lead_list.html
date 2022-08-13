@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRMapp</title>
+</head>
+<body>
+    <h1>This is all of our leads</h1>
+    {% for lead in leads %}
+    <a href="{% url 'leads:lead-detail' lead.id %}"><h3>{{lead.first_name}}</h3></a>
+    {% endfor %}
+    <a href="{% url 'leads:lead-create' %}"><h3>Create Lead?</h3></a>
+</body>
+</html>
