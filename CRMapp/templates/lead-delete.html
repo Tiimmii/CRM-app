@@ -7,6 +7,7 @@
     <title>Create ure Lead</title>
 </head>
 <body>
+    <h2>Are you sure you want to delete this lead?</h2>
     <form method="post">
         {% csrf_token %}
         {{form.as_p}}

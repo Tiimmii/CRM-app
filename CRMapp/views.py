@@ -1,26 +1,44 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.shortcuts import reverse
 from .models import Lead
-from .forms import LeadCreationForm
+from .forms import LeadCreateForm
 
-def lead_list(request):
-    leads = Lead.objects.all()
-    return render(request, 'lead_list.html', {'leads':leads})
+class Lead_list(ListView):
+    template_name = 'lead-list.html'
+    queryset = Lead.objects.all()
+    context_object_name = "leads"
 
-def lead_detail(request, pk):
-    leads = Lead.objects.get(id=pk)
-    return render(request, 'lead-detail.html', {'leads':leads})
+class Lead_detail(DetailView):
+    template_name = 'lead-detail.html'
+    queryset = Lead.objects.all()
+    context_object_name = "leads"
 
-def lead_create(request):
-    form = LeadCreationForm()
-    if request.method == 'POST':
-        form = LeadCreationForm(request.POST)
-        if form.is_valid:
-            form.save()
-            return redirect('/')
-        else:
-            return redirect('/')
-    else:
-        return render(request, 'lead-create.html', {'form':form})
+class Lead_create(CreateView):
+    template_name = 'lead-create.html'
+    form_class = LeadCreateForm
+
+    def get_success_url(self):
+        return reverse('leads:lead-list')
+
+class Lead_update(UpdateView):
+    template_name = 'lead-create.html'
+    form_class = LeadCreateForm
+    queryset = Lead.objects.all()
+    context_object_name = 'leads'
+
+    def get_success_url(self):
+        return reverse('leads:lead-list')
+
+class Lead_delete(DeleteView):
+    template_name = 'lead-delete.html'
+    queryset = Lead.objects.all()
+    context_object_name = 'leads'
+
+    def get_success_url(self):
+        return reverse('leads:lead-list')
+    
+
+
+
 
 
