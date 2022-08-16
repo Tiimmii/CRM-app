@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.contrib.auth.views import LoginView
+from CRMapp.views import Lead_signup
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include ('CRMapp.urls', namespace='leads')),
+    path('login/', LoginView.as_view(), name='login'),
+    path('signup/', Lead_signup.as_view(), name='signup')
 ]

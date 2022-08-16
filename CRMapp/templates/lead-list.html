@@ -7,7 +7,7 @@
     <title>CRMapp</title>
 </head>
 <body>
-    <h1>This is all of our leads</h1>
+    <h1>This is all of our leads</h1><a href="{% url 'login' %}"><h3>login</h3></a><a href="{% url 'signup' %}"><h3>signup</h3></a>
     {% for lead in leads %}
     <a href="{% url 'leads:lead-detail' lead.id %}"><h3>{{lead.first_name}}</h3></a>
     {% endfor %}
