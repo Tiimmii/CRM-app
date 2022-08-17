@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'CRMapp.apps.CrmappConfig'
+    'CRMapp.apps.CrmappConfig',
+    'Agentapp.apps.AgentappConfig',
 ]
 
 MIDDLEWARE = [

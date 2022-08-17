@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include ('CRMapp.urls', namespace='leads')),
     path('login/', LoginView.as_view(), name='login'),
+    path('', include('Agentapp.urls', namespace='agents')),
     path('signup/', Lead_signup.as_view(), name='signup')
 ]
