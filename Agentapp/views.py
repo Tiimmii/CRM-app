@@ -15,5 +15,12 @@ class Agent_create(generic.CreateView):
     template_name= 'agent-create.html'
     form_class = AgentCreationForm
 
+    #for automatically generating the organisation
+    def form_valid(self, form):
+        agent = form.save(commit=False)
+        agent.organisation = self.request.user.auto
+        agent.save()
+        return super(Agent_create,self).form_valid(form)
+
     def get_success_url(self):
         return reverse('agents:agent-list')

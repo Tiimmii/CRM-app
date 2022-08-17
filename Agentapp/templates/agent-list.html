@@ -7,6 +7,7 @@
     <title>Agent List</title>
 </head>
 <body>
+    <a href="{% url 'agents:agent-create' %}">create Agent</a>
     {% for agent in agents %}
     {{agent.user.username}}
     {% endfor %}
