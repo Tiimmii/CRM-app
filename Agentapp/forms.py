@@ -1,9 +1,14 @@
 from django import forms
-from CRMapp.models import Agent
+from CRMapp.models import User
+from django.contrib.auth.forms import UserCreationForm
 
-class AgentCreationForm(forms.ModelForm):
+
+class AgentCreationForm(UserCreationForm):
     class Meta:
-        model=Agent
+        model=User
         fields = (
-            'user',
-        )
+            'username',
+            'first_name',
+            'last_name',
+            'email'
+            )

@@ -9,12 +9,12 @@ class Lead_list(LoginRequiredMixin, generic.ListView):
     template_name = 'lead-list.html'
     context_object_name = "leads"
     
-    def get_query_set(self):
+    def get_queryset(self):
+        querset = Lead.objects.all()
         if self.request.user.is_organisor:
-            queryset  = Lead.objects.filter(organisation=self.request.user.auto)
-        else:
-            queryset = Lead.objects.filter(agent__user=self.request.user)
-        return queryset
+            queryset = querset.filter(organisation__user=self.request.user)
+        elif self.request.user.is_agent:
+            queryset = queryset.filter(agent__user=self.request.user)
 
     
 

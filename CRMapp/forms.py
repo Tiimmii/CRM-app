@@ -5,7 +5,12 @@ from django.contrib.auth.forms import UserCreationForm, UsernameField
 class LeadCreateForm(forms.ModelForm):
     class Meta:
         model = Lead
-        fields = '__all__'
+        fields = (
+            'first_name',
+            'last_name',
+            'age',
+            'agent',
+        )
 
 class LeadSignUpForm(UserCreationForm):
     class Meta:
