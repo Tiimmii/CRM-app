@@ -3,12 +3,20 @@ from django.shortcuts import reverse
 from .models import Lead
 from .forms import LeadCreateForm, LeadSignUpForm
 from django.core.mail import send_mail
-from django.contrib.auth.mixins import LoginRequiredMixin
+from .mixins import LoginRequiredMixin
 
 class Lead_list(LoginRequiredMixin, generic.ListView):
     template_name = 'lead-list.html'
-    queryset = Lead.objects.all()
     context_object_name = "leads"
+    
+    def get_query_set(self):
+        if self.request.user.is_organisor:
+            queryset  = Lead.objects.filter(organisation=self.request.user.auto)
+        else:
+            queryset = Lead.objects.filter(agent__user=self.request.user)
+        return queryset
+
+    
 
 class Lead_detail(LoginRequiredMixin, generic.DetailView):
     template_name = 'lead-detail.html'
@@ -50,7 +58,7 @@ class Lead_delete(LoginRequiredMixin, generic.DeleteView):
     def get_success_url(self):
         return reverse('leads:lead-list')
 
-class Lead_signup(generic.CreateView):
+class signup(generic.CreateView):
     template_name = 'registration/signup.html'
     form_class = LeadSignUpForm
 

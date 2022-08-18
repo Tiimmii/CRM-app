@@ -10,12 +10,15 @@ class Auto(models.Model):
 
 class User(AbstractUser):
     pass
+    is_organisor = models.BooleanField(default=True)
+    is_agent = models.BooleanField(default=False)
 
 class Lead(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     age = models.IntegerField(default=0)
     agent = models.ForeignKey("Agent", on_delete=models.CASCADE)
+    organisation = models.ForeignKey("Auto", on_delete=models.CASCADE)
 
     def __str__(self):
        return f"{self.first_name} {self.last_name}"

@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agent List</title>
+    <title>Agent Deatails</title>
 </head>
 <body>
-    <a href="{% url 'agents:agent-create' %}">create Agent</a>
-    {% for agent in agents %}
-    <a href="{% url 'agents:agent-details' agent.id %}">{{agent.user.username}}</a>
-    {% endfor %}
+    <p>{{agent.user.username}} <a href="{% url 'agents:agent-update' agents.id %}">update</a><a href="{% url 'agents:agent-delete' agents.id%}">delete agent</a> </p>
 </body>
 </html>
