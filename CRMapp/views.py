@@ -18,7 +18,6 @@ class Lead_list(LoginRequiredMixin, generic.ListView):
             queryset = queryset.filter(agent__user=self.request.user)
 
     
-
 class Lead_detail(LoginRequiredMixin, generic.DetailView):
     template_name = 'lead-detail.html'
     queryset = Lead.objects.all()
@@ -32,17 +31,9 @@ class Lead_create(ManualLoginRequiredMixin, generic.CreateView):
         return reverse('leads:lead-list')
 
     def form_valid(self, form):
-        first_name = form.cleaned_data['first_name']
-        last_name = form.cleaned_data['last_name']
-        age = form.cleaned_data['age']
-        agent = form.cleaned_data['agent']
-        Lead.objects.create(
-            first_name=first_name,
-            last_name=last_name,
-            age=age,
-            agent=agent,
-            organisation = self.request.user.auto,
-        )
+        lead = form.save(commit=False)
+        lead.organisation = self.request.user.auto
+        lead.save()
         send_mail(
             subject='Lead created',
             message='Lead has been Created successfully',
