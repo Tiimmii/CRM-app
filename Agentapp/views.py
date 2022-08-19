@@ -2,10 +2,10 @@ from django.shortcuts import reverse, redirect
 from django.views import generic
 from CRMapp.models import Agent
 from .forms import AgentCreationForm
-from CRMapp.mixins import LoginRequiredMixin
+from CRMapp.mixins import ManualLoginRequiredMixin
 from django.core.mail import send_mail
 
-class Agent_list(LoginRequiredMixin, generic.ListView):
+class Agent_list(ManualLoginRequiredMixin, generic.ListView):
     template_name = 'agent-list.html'
     context_object_name = 'agents'
 
@@ -19,7 +19,7 @@ class Agent_list(LoginRequiredMixin, generic.ListView):
         else:
             return super(Agent_list, self).form_valid(form)
 
-class Agent_create(LoginRequiredMixin, generic.CreateView):
+class Agent_create(ManualLoginRequiredMixin, generic.CreateView):
     template_name= 'agent-create.html'
     form_class = AgentCreationForm
 
@@ -45,7 +45,7 @@ class Agent_create(LoginRequiredMixin, generic.CreateView):
 
         return super(Agent_create,self).form_valid(form)
 
-class Agent_update(LoginRequiredMixin, generic.UpdateView):
+class Agent_update(ManualLoginRequiredMixin, generic.UpdateView):
     template_name = 'agent-update.html'
     form_class = AgentCreationForm
     queryset = Agent.objects.all()
@@ -54,7 +54,7 @@ class Agent_update(LoginRequiredMixin, generic.UpdateView):
     def get_success_url(self):
         return reverse('agents:agent-list')
 
-class Agent_delete(LoginRequiredMixin, generic.DeleteView):
+class Agent_delete(ManualLoginRequiredMixin, generic.DeleteView):
     template_name = 'agent-delete.html'
     queryset = Agent.objects.all()
     context_object_name = 'agents'
@@ -62,7 +62,7 @@ class Agent_delete(LoginRequiredMixin, generic.DeleteView):
     def get_success_url(self):
         return reverse('agents:agent-list')
 
-class Agent_details(LoginRequiredMixin, generic.DetailView):
+class Agent_details(ManualLoginRequiredMixin, generic.DetailView):
     template_name = 'agent-detail.html'
     queryset = Agent.objects.all()
     context_object_name = 'agents'

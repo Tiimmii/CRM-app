@@ -1,8 +1,8 @@
 from django.contrib.auth.mixins import AccessMixin
 from django.shortcuts import redirect
 
-class LoginRequiredMixin(AccessMixin):
-    """Verify that the current user is authenticated."""
+class ManualLoginRequiredMixin(AccessMixin):
+    """Verify that the current user is authenticatedand is an organisor"""
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated or not request.user.is_organisor:
