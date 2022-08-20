@@ -11,11 +11,11 @@ class Lead_list(LoginRequiredMixin, generic.ListView):
     context_object_name = "leads"
     
     def get_queryset(self):
-        queryset = Lead.objects.all()
         if self.request.user.is_organisor:
-            queryset = queryset.filter(organisation__user=self.request.user)
-        elif self.request.user.is_agent:
-            queryset = queryset.filter(agent__user=self.request.user)
+            queryset = Lead.objects.filter(organisation = self.request.user.auto)
+        else:
+            queryset = Lead.objects.filter(agent = self.request.user.agent)
+        return queryset
 
     
 class Lead_detail(LoginRequiredMixin, generic.DetailView):
