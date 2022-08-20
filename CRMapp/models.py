@@ -10,6 +10,7 @@ class Auto(models.Model):
 
 class User(AbstractUser):
     pass
+    # To categorize users either as an organisor or as an agent
     is_organisor = models.BooleanField(default=True)
     is_agent = models.BooleanField(default=False)
 

@@ -11,6 +11,7 @@ class Agent_list(ManualLoginRequiredMixin, generic.ListView):
     context_object_name = 'agents'
 
     def get_queryset(self):
+        # To filter the Agents based on the organisation of the authenticated user
         queryset = Agent.objects.filter(organisation = self.request.user.auto)  
         return queryset
 
@@ -27,17 +28,20 @@ class Agent_create(ManualLoginRequiredMixin, generic.CreateView):
     def get_success_url(self):
         return reverse('agents:agent-list')
 
-    #for automatically generating the organisation id and generating a random password
+    #for automatically generating the organisation id and generating a random password for agent created
     def form_valid(self, form):
         user = form.save(commit=False)
+        # Categorizing the created agent as an agent and not an organisor
         user.is_organisor = False
         user.is_agent = True
+        # setting a random password for created agent
         user.set_password(f"{random.randint(0,100000)}")
         user.save()
         Agent.objects.create(
             user = user,
             organisation = self.request.user.auto
         )
+        #sending a mail to agent from the authenticated organisor to ensure agents resets their passwords to login
         send_mail(
             subject = 'U are now an agent',
             message = 'u have been made as an agent of Timmi CRM, Please dont forget to reset ure password',

@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class Lead_list(LoginRequiredMixin, generic.ListView):
     template_name = 'lead-list.html'
     context_object_name = "leads"
-    
+    #filtering the leads according to the organisor and agent
     def get_queryset(self):
         if self.request.user.is_organisor:
             queryset = Lead.objects.filter(organisation = self.request.user.auto)
@@ -31,9 +31,11 @@ class Lead_create(ManualLoginRequiredMixin, generic.CreateView):
         return reverse('leads:lead-list')
 
     def form_valid(self, form):
+        # automatically assigning the organisation based on the user authenticated
         lead = form.save(commit=False)
         lead.organisation = self.request.user.auto
         lead.save()
+        # To send a mail to the authenticated user.
         send_mail(
             subject='Lead created',
             message='Lead has been Created successfully',
@@ -45,6 +47,7 @@ class Lead_create(ManualLoginRequiredMixin, generic.CreateView):
     
 
 class Lead_update(LoginRequiredMixin, generic.UpdateView):
+    # Lead update for authenticated organisor
     template_name = 'lead-update.html'
     form_class = LeadCreateForm
     queryset = Lead.objects.all()
@@ -54,6 +57,7 @@ class Lead_update(LoginRequiredMixin, generic.UpdateView):
         return reverse('leads:lead-list')
 
 class Agent_Lead_update(AgentLoginRequiredMixin, generic.UpdateView):
+    # Lead Update for authenticated agent
     template_name = 'lead-update.html'
     form_class = AgentLeadUpdateForm
     queryset = Lead.objects.all()
@@ -63,6 +67,7 @@ class Agent_Lead_update(AgentLoginRequiredMixin, generic.UpdateView):
         return reverse('leads:lead-list')
 
     def form_valid(self, form):
+        # To automatically get the agent based on the agent auhtenticated
         lead = form.save(commit=False)
         lead.agent = self.request.user.agent
         lead.save()
