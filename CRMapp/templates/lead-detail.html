@@ -7,7 +7,12 @@
     <title>Lead details</title>
 </head>
 <body>
-    <h3>{{leads.first_name}} {{leads.last_name}}</h3>
-    <a href="{% url 'leads:lead-update' leads.id %}"><h3>update</h3></a><a href="{% url 'leads:lead-delete' leads.id %}"><h3>delete</h3></a>
+    <h3>{{leads.first_name}} {{leads.last_name}}</h3><br>
+    {% if request.user.is_organisor %}
+    <a href="{% url 'leads:lead-update' leads.id %}"><h3>update</h3></a>
+    {% else %}
+    <a href="{% url 'leads:lead-agentupdate' leads.id %}"><h3>update</h3></a>
+    {% endif %}
+    <a href="{% url 'leads:lead-delete' leads.id %}"><h3>delete</h3></a>
 </body>
 </html>

@@ -12,6 +12,15 @@ class LeadCreateForm(forms.ModelForm):
             'agent',
         )
 
+class AgentLeadUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Lead
+        fields = (
+            'first_name',
+            'last_name',
+            'age',
+        )
+
 class LeadSignUpForm(UserCreationForm):
     class Meta:
         model = User

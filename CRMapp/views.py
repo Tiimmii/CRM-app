@@ -1,9 +1,9 @@
 from django.views import generic
 from django.shortcuts import reverse
 from .models import Lead
-from .forms import LeadCreateForm, LeadSignUpForm
+from .forms import LeadCreateForm, LeadSignUpForm, AgentLeadUpdateForm
 from django.core.mail import send_mail
-from .mixins import ManualLoginRequiredMixin
+from .mixins import ManualLoginRequiredMixin, AgentLoginRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class Lead_list(LoginRequiredMixin, generic.ListView):
@@ -45,13 +45,29 @@ class Lead_create(ManualLoginRequiredMixin, generic.CreateView):
     
 
 class Lead_update(LoginRequiredMixin, generic.UpdateView):
-    template_name = 'lead-create.html'
+    template_name = 'lead-update.html'
     form_class = LeadCreateForm
     queryset = Lead.objects.all()
     context_object_name = 'leads'
 
     def get_success_url(self):
         return reverse('leads:lead-list')
+
+class Agent_Lead_update(AgentLoginRequiredMixin, generic.UpdateView):
+    template_name = 'lead-update.html'
+    form_class = AgentLeadUpdateForm
+    queryset = Lead.objects.all()
+    context_object_name = 'leads'
+
+    def get_success_url(self):
+        return reverse('leads:lead-list')
+
+    def form_valid(self, form):
+        lead = form.save(commit=False)
+        lead.agent = self.request.user.agent
+        lead.save()
+        return super(Agent_Lead_update, self).form_valid(form)
+
 
 class Lead_delete(LoginRequiredMixin, generic.DeleteView):
     template_name = 'lead-delete.html'
@@ -67,7 +83,8 @@ class signup(generic.CreateView):
 
     def get_success_url(self):
         return reverse('login')
-    
+
+
 
 
 

@@ -1,3 +1,4 @@
+from random import random
 from django.shortcuts import reverse, redirect
 from django.views import generic
 from CRMapp.models import Agent
@@ -31,6 +32,7 @@ class Agent_create(ManualLoginRequiredMixin, generic.CreateView):
         user = form.save(commit=False)
         user.is_organisor = False
         user.is_agent = True
+        user.set_password(f"{random.randint(0,100000)}")
         user.save()
         Agent.objects.create(
             user = user,
@@ -38,7 +40,7 @@ class Agent_create(ManualLoginRequiredMixin, generic.CreateView):
         )
         send_mail(
             subject = 'U are now an agent',
-            message = 'u have been made as an agent of Timmi CRM, Please dont forget t reset ure password',
+            message = 'u have been made as an agent of Timmi CRM, Please dont forget to reset ure password',
             from_email = self.request.user.email,
             recipient_list= [user.email],
         )

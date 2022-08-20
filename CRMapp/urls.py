@@ -9,4 +9,5 @@ urlpatterns = [
     path('create',views.Lead_create.as_view(), name='lead-create'),
     path('update/<str:pk>', views.Lead_update.as_view(), name='lead-update'),
     path('delete/<str:pk>', views.Lead_delete.as_view, name='lead-delete'),
+    path('agentupdate/<str:pk>', views.Agent_Lead_update.as_view(), name='lead-agentupdate'),
 ]
