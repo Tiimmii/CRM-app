@@ -12,7 +12,11 @@
     {% else %}
     <a href="{% url 'login' %}"><h3>login</h3></a><a href="{% url 'signup' %}"><h3>signup</h3>
     {% endif %}
-    <h1>This is all of our leads</h1></a>
+    {% if request.user.is_organisor %}
+    <h1>This is all of our leads under ure organisation</h1></a>
+    {% else %}
+    <h1>This is all of your leads to manage</h1>
+    {% endif %}
     {% if request.user.is_organisor %}
     <a href="{% url 'agents:agent-list' %}"><h3>Agents</h3></a>
     {% else %}

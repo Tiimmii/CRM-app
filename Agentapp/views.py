@@ -1,4 +1,4 @@
-from random import random
+import random
 from django.shortcuts import reverse, redirect
 from django.views import generic
 from CRMapp.models import Agent
@@ -27,7 +27,7 @@ class Agent_create(ManualLoginRequiredMixin, generic.CreateView):
     def get_success_url(self):
         return reverse('agents:agent-list')
 
-    #for automatically generating the organisation id
+    #for automatically generating the organisation id and generating a random password
     def form_valid(self, form):
         user = form.save(commit=False)
         user.is_organisor = False
