@@ -17,6 +17,19 @@ class Lead_list(LoginRequiredMixin, generic.ListView):
             queryset = Lead.objects.filter(agent = self.request.user.agent)
         return queryset
 
+    # getting the leads with null agents
+
+    def get_context_data(self, **kwargs):
+        context = super(Lead_list, self).get_context_data(**kwargs)
+        if self.request.user.is_organisor:
+            queryset=Lead.objects.filter(organisation=self.request.user.auto, agent__isnull=True)
+        context.update(
+            {
+                'unassigned_leads':queryset,
+            }
+        )
+        return context
+
     
 class Lead_detail(LoginRequiredMixin, generic.DetailView):
     template_name = 'lead-detail.html'

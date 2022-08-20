@@ -28,5 +28,11 @@
     <a href="{% url 'leads:lead-create' %}"><h3>Create Lead?</h3></a>
     {% else %}
     {% endif %}
+    {% if unassigned_leads %}
+    {% for unassigned in unassigned_leads %}
+    <p><h3>unassigned_leads: <a href="{% url 'leads:lead-detail' unassigned.id %}">{{unassigned.first_name}} {{unassigned.last_name}}</a></h3></p>
+    {% endfor %}
+    {% else %}
+    {% endif %}
 </body>
 </html>
