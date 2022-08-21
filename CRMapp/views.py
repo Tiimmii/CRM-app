@@ -1,7 +1,7 @@
 from django.views import generic
 from django.shortcuts import reverse
 from .models import Lead
-from .forms import LeadCreateForm, LeadSignUpForm, AgentLeadUpdateForm
+from .forms import LeadCreateForm, LeadSignUpForm, AgentLeadUpdateForm, AgentAssignForm
 from django.core.mail import send_mail
 from .mixins import ManualLoginRequiredMixin, AgentLoginRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -96,11 +96,37 @@ class Lead_delete(LoginRequiredMixin, generic.DeleteView):
         return reverse('leads:lead-list')
 
 class signup(generic.CreateView):
+
+
     template_name = 'registration/signup.html'
     form_class = LeadSignUpForm
 
     def get_success_url(self):
         return reverse('login')
+
+class Agent_assign(ManualLoginRequiredMixin, generic.FormView):
+    template_name = 'agent-assign.html'
+    form_class = AgentAssignForm
+
+    def get_success_url(self):
+        return reverse('leads:lead-list')
+
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(Agent_assign,self).get_form_kwargs(**kwargs)
+        kwargs.update({
+            "user":self.request.user
+        })
+        return kwargs
+
+    def form_valid(self, form):
+        agent = form.cleaned_data['agent']
+        lead = Lead.objects.get(id=self.kwargs['pk'])
+        lead.agent = agent
+        lead.save
+        return super(Agent_assign, self).form_valid(form)
+
+
 
 
 

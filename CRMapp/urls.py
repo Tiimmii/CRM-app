@@ -10,4 +10,5 @@ urlpatterns = [
     path('update/<str:pk>', views.Lead_update.as_view(), name='lead-update'),
     path('delete/<str:pk>', views.Lead_delete.as_view, name='lead-delete'),
     path('agentupdate/<str:pk>', views.Agent_Lead_update.as_view(), name='lead-agentupdate'),
+    path('agentassign/<str:pk>', views.Agent_assign.as_view(), name='agentassign'),
 ]
