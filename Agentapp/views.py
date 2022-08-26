@@ -1,7 +1,8 @@
 import random
+from unicodedata import category
 from django.shortcuts import reverse, redirect
 from django.views import generic
-from CRMapp.models import Agent
+from CRMapp.models import Agent, Category
 from .forms import AgentCreationForm
 from CRMapp.mixins import ManualLoginRequiredMixin
 from django.core.mail import send_mail

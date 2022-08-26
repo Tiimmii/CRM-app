@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agent Deatails</title>
+    <title>Agent Details</title>
 </head>
 <body>
-    <p>{{agent.user.username}} <a href="{% url 'agents:agent-update' agents.id %}">update</a><a href="{% url 'agents:agent-delete' agents.id%}">delete agent</a> </p>
+    <a href="{% url 'agents:agent-list' %}"><p>Go back</p></a>
+    <p><h3>
+        username: {{agents.user.username}}<br>
+        first_name: {{agents.user.first_name}}<br>
+        last_name: {{agents.user.last_name}}<br>
+        email: {{agents.user.email}}<br>
+    </h3></p>
+        <a href="{% url 'agents:agent-update' agents.id %}">update</a>  <a href="{% url 'agents:agent-delete' agents.id%}">delete agent</a>
 </body>
 </html>

@@ -7,6 +7,7 @@
     <title>Update Lead</title>
 </head>
 <body>
+    <a href="{% url 'leads:lead-detail' leads.id %}"><p>Go back</p></a>
     <form method="post">
         {% csrf_token %}
         {{form.as_p}}

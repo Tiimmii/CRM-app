@@ -7,9 +7,10 @@
     <title>Agent List</title>
 </head>
 <body>
-    <a href="{% url 'agents:agent-create' %}">create Agent</a>
+    <a href="{% url 'leads:lead-list' %}"><p>Go back</p></a>
+    <a href="{% url 'agents:agent-create' %}">create Agent</a><br>
     {% for agent in agents %}
-    <a href="{% url 'agents:agent-details' agent.id %}">{{agent.user.username}}</a>
+    <a href="{% url 'agents:agent-details' agent.id %}"><h3>{{agent.user.username}}</h3></a>
     {% endfor %}
 </body>
 </html>

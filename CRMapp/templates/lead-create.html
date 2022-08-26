@@ -7,6 +7,7 @@
     <title>Create ure Lead</title>
 </head>
 <body>
+    <a href="{% url 'leads:lead-list' %}"><p>Go back</p></a>
     <form method="post">
         {% csrf_token %}
         {{form.as_p}}

@@ -7,30 +7,33 @@
     <title>CRMapp</title>
 </head>
 <body>
+    <a href="{% url 'leads:landing-page' %}">Home</a>
     {% if request.user.is_authenticated %}
-    <h3>signed in as:{{request.user.username}}</h3><a href="{% url 'logout' %}"><h3>logout</h3></a>
+    <h3>logged in as:{{request.user.username}}</h3><a href="{% url 'logout' %}"><h3>logout</h3></a>
     {% else %}
     <a href="{% url 'login' %}"><h3>login</h3></a><a href="{% url 'signup' %}"><h3>signup</h3>
-    {% endif %}
-    {% if request.user.is_organisor %}
-    <h1>This is all of our leads under ure organisation</h1></a>
-    {% else %}
-    <h1>This is all of your leads to manage</h1>
     {% endif %}
     {% if request.user.is_organisor %}
     <a href="{% url 'agents:agent-list' %}"><h3>Agents</h3></a>
     {% else %}
     {% endif %}
+    {% if request.user.is_organisor %}
+    <h1>This are all of our leads under ure organisation:</h1></a>
+    <a href="{% url 'leads:category' %}"><h2>view Lead categories</h2></a>
+    {% else %}
+    <h1>This are all your leads to manage</h1>
+    {% endif %}
     {% for lead in leads %}
-    <a href="{% url 'leads:lead-detail' lead.id %}"><h3>{{lead.first_name}}</h3></a>
+    <a href="{% url 'leads:lead-detail' lead.id %}"><h3>{{lead.first_name}} {{lead.last_name}}</h3></a>
     {% endfor %}
     {% if request.user.is_organisor %}
     <a href="{% url 'leads:lead-create' %}"><h3>Create Lead?</h3></a>
     {% else %}
     {% endif %}
     {% if unassigned_leads.exists %}
+    <h2>Unnassigned Leads:</h2>
     {% for unassigned in unassigned_leads %}
-    <p><h3>unassigned_leads: <a href="{% url 'leads:agentassign' unassigned.id %}">{{unassigned.first_name}} {{unassigned.last_name}}</a></h3></p>
+    <p><h3><a href="{% url 'leads:agentassign' unassigned.id %}">{{unassigned.first_name}} {{unassigned.last_name}}</a></h3></p>
     {% endfor %}
     {% else %}
     {% endif %}

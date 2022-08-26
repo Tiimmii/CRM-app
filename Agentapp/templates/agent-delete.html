@@ -7,11 +7,12 @@
     <title>Agent Delete</title>
 </head>
 <body>
+    <a href="{% url 'agents:agent-detail' agents.id %}"><p>Go back</p></a>
     Are u sure u want to delete this agent?
     <form method="post">
         {% csrf_token %}
         {{form.as_p}}
-        <button>yes</button>
+        <button>yes</button>  <a href="{% url 'agents:agent-detail' agents.id %}"><button>No</button></a>
     </form>
 </body>
 </html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new-lead category</title>
+</head>
+<body>
+    <a href="{% url 'leads:category' %}"><p>Go back</p></a>
+    {% for new_lead_category in new_leads %}
+    {% if request.user.is_organisor %}
+    <a href="{% url 'leads:category-leadupdate' new_lead_category.id  %}"><h3>{{new_lead_category.first_name}}  {{new_lead_category.last_name}}</h3></a>
+    {% else %}
+    <a href="{% url 'leads:category-leadupdate' new_lead_category.id  %}"><h3>{{new_lead_category.first_name}}  {{new_lead_category.last_name}}</h3></a>
+    {% endif %}
+    {% endfor %}
+</body>
+</html>

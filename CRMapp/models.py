@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
+from datetime import datetime
 
 class Auto(models.Model):
     user = models.OneToOneField("User", on_delete=models.CASCADE)
@@ -19,18 +20,28 @@ class Lead(models.Model):
     last_name = models.CharField(max_length=20)
     age = models.IntegerField(default=0)
     agent = models.ForeignKey("Agent", on_delete=models.SET_NULL, null=True, blank=True)
-    organisation = models.ForeignKey("Auto", on_delete=models.SET_NULL, null=True, blank=True)
+    organisation = models.ForeignKey("Auto", on_delete=models.CASCADE)
+    category = models.ForeignKey("Category", on_delete=models.SET_NULL, null=True, blank=True, related_name='leads')
+    created_at = models.DateTimeField(default=datetime.now, blank=True, null=True)
 
     def __str__(self):
        return f"{self.first_name} {self.last_name}"
-
-
 
 class Agent(models.Model):
     user = models.OneToOneField("User", on_delete=models.CASCADE)
     organisation = models.ForeignKey("Auto", on_delete=models.CASCADE)
     def __str__(self):
         return self.user.username
+
+class Category(models.Model):
+    name = models.CharField(max_length=15)
+    user = models.ForeignKey("User", on_delete=models.CASCADE)
+
+
+
+    def __str__(self):
+        return self.name
+
 
 def post_user_created_signal(sender, instance, created, **kwargs):
     if created:
