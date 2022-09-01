@@ -1,5 +1,5 @@
 from django.views import generic
-from django.shortcuts import reverse
+from django.shortcuts import reverse, redirect
 from .models import Lead, Category
 from .forms import LeadCreateForm, LeadSignUpForm, AgentLeadUpdateForm, AgentAssignForm,LeadUpdateForm, CategoryUpdateForm
 from django.core.mail import send_mail
@@ -130,6 +130,11 @@ class signup(generic.CreateView):
             Category.objects.create(name = 'converted', user = organisor)
 
         return super(signup, self).form_valid(form)
+
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('leads:lead-list')
+        return super(signup, self).get(*args, **kwargs)
 
 
 class Agent_assign(ManualLoginRequiredMixin, generic.FormView):
