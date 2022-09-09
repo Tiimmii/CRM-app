@@ -8,9 +8,11 @@
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" href=" {% static 'signup.css'%} ">
+ 
     <title>Signup</title>
 </head>
 <body>
+    {% block content %}
     <div class="container">
     <form method="post">
         <div class="box">
@@ -29,5 +31,6 @@
     </div>
     </form>
     </div>
+    {% endblock %}
 </body>
 </html>
