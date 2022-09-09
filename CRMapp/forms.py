@@ -36,7 +36,7 @@ class AgentLeadUpdateForm(forms.ModelForm):
 class LeadSignUpForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ("username",)
+        fields = ("username", "email")
         field_classes = {"username": UsernameField}
 
 class AgentAssignForm(forms.Form):

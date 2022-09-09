@@ -105,7 +105,7 @@ class Agent_Lead_update(AgentLoginRequiredMixin, generic.UpdateView):
         lead.save()
         return super(Agent_Lead_update, self).form_valid(form)
 
-
+    
 class Lead_delete(LoginRequiredMixin, generic.DeleteView):
     template_name = 'lead-delete.html'
     queryset = Lead.objects.all()
