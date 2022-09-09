@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+body{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    background: linear-gradient(to bottom, rgba(247, 252, 252, 0), rgb(220, 220, 230));
+    background-size: cover;
+    min-height: 100vh;
+    margin: 10px;
+}
+.container{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box{
+    width: 650px;
+    height: auto;
+    border: 3px solid black;
+    border-radius: 9px;
+    padding: 10px;
+}
+.box h1{
+    text-align: center;
+    font-weight: 600;
+    font-size: 30px;
+}
+.box h1::after{
+    content: '';
+    display: block;
+    width: 500px;
+    height: 4px;
+    margin: auto;
+    background: black;
+    border-radius: 3px;
+}
+.bottom{
+    width: 70%;
+    margin-left: 100px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+.bottom button{
+    transition: 0.3s ease-in-out;
+    height: 50px;
+    font-size: 20px;
+    font-weight: 400;
+    border: 3px black solid;
+}
+.bottom button:hover{
+    color: white;
+}
+.login{
+    text-decoration: underline 2px black solid;
+    text-align: center;
+
+}
+.login a{
+    transition: 0.5s ease-in-out;
+}
+.login a:hover{
+    color: rgb(124, 142, 230);
+}
