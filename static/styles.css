@@ -1,0 +1,184 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+body{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    background: linear-gradient(to bottom, rgba(247, 252, 252, 0),rgb(220, 220, 230));
+    background-size: cover;
+    min-height: 100vh;
+    margin: 10px;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 2px 4%;
+    align-items: baseline;
+}
+.hello{
+    margin-top: 2%;
+    font-weight: 600;
+    font-size: 30px;
+}
+.nav-contents{
+    flex: 1;
+    text-align: center;
+}
+.nav-contents ul li{
+    list-style: none;
+    display: inline-block;
+    padding: 12px 28px;
+    margin-top: 19px;
+}
+.nav-contents ul li{
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 20px;
+    transform: 0.2s;
+}
+.nav-contents ul a::after{
+    content: '';
+    display: block;
+    width: 0px;
+    height: 3px;
+    transition: 0.5s ease-in-out;
+    margin: auto;
+    background: rgb(124, 142, 230);
+}
+.nav-contents ul a:hover::after{
+    width:40px;
+}
+.nav-contents ul a:hover{
+    font-size: 25px;
+}
+.search{
+    box-sizing: border-box;
+}
+.search input{
+    padding: 2px;
+    border-radius: 7px;
+}
+.search button{
+
+    color: black solid;
+    border: none;
+    transition: 0.2s ease-in-out;
+    background-color: rgba(247, 252, 252, 0);
+}
+.search button:hover{
+    color:rgb(124, 142, 230);
+}
+.search-icon{
+    transform: rotate(-45deg);
+    font-size:25px;
+    margin-top: 3px;
+}
+.container{
+    margin: 95px;
+    height: 60%;
+}
+#text-p{
+    font-weight: 400;
+    font-size: 30px;
+    text-transform: capitalize;
+}
+#text-u{
+    font-weight: 400;
+    font-size: 30px;
+    text-transform: capitalize;
+}
+#text-p::after{
+    content: '';
+    display: block;
+    width: 1200px;
+    height: 2px;
+    margin-left: 30px;
+    background: black;
+    border-radius: 3px;
+}
+#text-u::before{
+    content: '';
+    display: block;
+    width: 1200px;
+    height: 2px;
+    margin-left: 30px;
+    background: black;
+    border-radius: 3px;
+}
+.lead{
+    margin-top: 20px;
+    margin-right: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    
+}
+.lead p{
+    border: 2px solid black;
+    margin-bottom: 25px;
+    margin-left: 10px;
+    width:500px;
+    height: auto;
+    border-radius: 9px;
+    padding-left: 6px;
+    transition: 0.3s ease-in-out;   
+}
+.text{
+    font-weight: 50;
+    font-size: 12px;
+    padding-left: 15px;
+    color: rgb(124, 142, 230);
+}
+.lead p:hover{
+    background-color: rgba(164, 165, 170, 0.2);
+}
+.lead span{
+    transition: 0.3s ease-in-out;
+}
+.lead span:hover{
+    font-size: 15px;
+}
+.bottom{
+    width: 50%;
+    margin-left: 17%;
+    margin-top: 20px;
+}
+.bottom button{
+    transition: 0.3s ease-in-out;
+    height: 50px;
+    font-size: 20px;
+    font-weight: 400;
+    border: 2px black solid;
+}
+.bottom button:hover{
+    color: white;
+}
+.unnasigned{
+    margin-top: 10px;
+    margin-left: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+}
+.unnasigned p{
+    border: 2px solid black;
+    margin-left: 10px;
+    width:500px;
+    height: auto;
+    border-radius: 9px;
+    padding-left: 6px;
+    transition: 0.3s ease-in-out; 
+}
+.unnasigned p:hover{
+    background-color: rgba(164, 165, 170, 0.2);
+}
+.unnasigned span{
+    transition: 0.3s ease-in-out;
+}
+.unnasigned span:hover{
+    font-size: 15px;
+}
