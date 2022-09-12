@@ -14,12 +14,13 @@ class User(AbstractUser):
     # To categorize users either as an organisor or as an agent
     is_organisor = models.BooleanField(default=True)
     is_agent = models.BooleanField(default=False)
+    agent_details = models.TextField(null = True, blank=True)
 
 class Lead(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     age = models.IntegerField(default=0)
-    descripton = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
     agent = models.ForeignKey("Agent", on_delete=models.SET_NULL, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
     organisation = models.ForeignKey("Auto", on_delete=models.CASCADE)

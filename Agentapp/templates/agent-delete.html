@@ -1,18 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agent Delete</title>
-</head>
-<body>
-    <a href="{% url 'agents:agent-detail' agents.id %}"><p>Go back</p></a>
-    Are u sure u want to delete this agent?
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button>yes</button>  <a href="{% url 'agents:agent-detail' agents.id %}"><button>No</button></a>
-    </form>
 </body>
-</html>
+</html>{% extends 'registration/signup.html' %}
+{% load tailwind_filters %}
+{% load static %}
+{% block content %}
+<title>Delete Agent</title>
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="span">
+                <h1>Delete Agent <span>{{agents.user.username}}.</span></h1>
+            </div>
+                <div class="span">
+                <form method="post">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <h2>Are You sure You want to delete agent <span>{{agents.user.username}}</span></h2>
+                </div>
+                <div class="bottom">
+                    <button class="w-full hover:px-3 py-2 rounded-md">Yes</button>
+                    </form>
+                    <a href="{% url 'agents:agent-list' %}"><button class="w-full hover:px-3 py-2 rounded-md">No</button></a>
+                </div>
+        </div>
+        <div class="team_img_wrapper">
+            <img src="{% static 'images/team.svg' %}" alt="team-img" />
+          </div>
+    </div>
+</body>
+{% endblock %}

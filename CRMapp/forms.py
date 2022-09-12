@@ -6,6 +6,7 @@ class LeadCreateForm(forms.Form):
     first_name = forms.CharField(max_length=20)
     last_name = forms.CharField(max_length = 20)
     age = forms.IntegerField()
+    description = forms.Textarea()
     agent = forms.ModelChoiceField(queryset = Agent.objects.none())
 
     def __init__(self, *args, **kwargs):
@@ -22,6 +23,7 @@ class LeadUpdateForm(forms.ModelForm):
             'first_name',
             'last_name',
             'age',
+            'description',
         )
 
 class AgentLeadUpdateForm(forms.ModelForm):
@@ -31,6 +33,7 @@ class AgentLeadUpdateForm(forms.ModelForm):
             'first_name',
             'last_name',
             'age',
+            'description',
         )
 
 class LeadSignUpForm(UserCreationForm):
