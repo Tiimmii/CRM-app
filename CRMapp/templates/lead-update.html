@@ -16,7 +16,12 @@
                     <button class="w-full hover:px-3 py-2 rounded-md">Update Lead</button>
                 </div>
                 <div class="login">
+                    {% if request.user.is_organisor %}
+                    <a href="{% url 'leads:agentassign' lead_id %}">Change lead Agent?</a><br>
                     <a href="{% url 'leads:lead-list' %}">Go Back?</a><br>
+                    {% else %}
+                    <a href="{% url 'leads:lead-list' %}">Go Back?</a><br>
+                    {% endif %}
                 </div>
             </form>
         </div>

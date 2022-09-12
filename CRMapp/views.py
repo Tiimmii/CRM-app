@@ -99,7 +99,7 @@ class Lead_create(ManualLoginRequiredMixin, generic.FormView):
 
     
 
-class Lead_update(LoginRequiredMixin, generic.UpdateView):
+class Lead_update(ManualLoginRequiredMixin, generic.UpdateView):
     # Lead update for authenticated organisor
     template_name = 'lead-update.html'
     form_class = LeadUpdateForm
@@ -109,6 +109,14 @@ class Lead_update(LoginRequiredMixin, generic.UpdateView):
 
     def get_success_url(self):
         return reverse('leads:lead-detail', kwargs = {'pk':self.get_object().id})
+
+    def get_context_data(self, **kwargs):
+        context = super(Lead_update, self).get_context_data(**kwargs)
+        queryset = Lead.objects.get(id=self.kwargs['pk'])
+        context.update({
+            'lead_id': queryset
+        })
+        return context
 
 class Agent_Lead_update(AgentLoginRequiredMixin, generic.UpdateView):
     # Lead Update for authenticated agent

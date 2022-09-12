@@ -160,7 +160,7 @@ nav > span{
     color: rgb(124, 142, 230);
 }
 .lead p:hover{
-    background-color: #fafbfb;
+    background: #fafbfb;
 }
 .lead span{
     transition: 0.3s ease-in-out;
