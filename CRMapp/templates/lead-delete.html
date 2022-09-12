@@ -10,11 +10,14 @@
                 <h1>Delete Lead <span>{{leads.first_name}}.</span></h1>
             </div>
                 <div class="span">
+                <form method="post">
+                    {% csrf_token %}
+                    {{form|crispy}}
                     <h2>Are You sure You want to delete lead <span>{{leads.first_name}} {{leads.last_name}}</span></h2>
                 </div>
                 <div class="bottom">
                     <button class="w-full hover:px-3 py-2 rounded-md">Yes</button>
-                    <br>&nbsp;
+                    </form>
                     <a href="{% url 'leads:lead-list' %}"><button class="w-full hover:px-3 py-2 rounded-md">No</button></a>
                 </div>
         </div>

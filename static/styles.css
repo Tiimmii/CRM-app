@@ -25,9 +25,10 @@ nav{
 }
 nav > span{
     font-weight: 700;
-    font-size: 28px;
+    font-size: 25px;
     color: #335eea;
-    text-transform: capitalize;
+    text-transform:uppercase;
+    margin-left: 10px;
 }
 .hello{
     margin-top: 2%;

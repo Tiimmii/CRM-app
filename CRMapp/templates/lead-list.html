@@ -11,12 +11,17 @@
 </head>
 <body>
     <nav>
-        <h1 class="hello">Welcome to</h1> <span>Timmi's CRM.</span>
+        <h1 class="hello">Welcome</h1> 
+        <span>{{request.user.username}} &#128519;</span>.
         <div class="nav-contents">
             <ul>
                <li><a href="{% url 'logout' %}">Logout</a></li>
                {% if request.user.is_organisor %}
                <li><a  href="{% url 'agents:agent-list' %}">Agents</a></li>
+               {% else %}
+               {% endif %}
+               {% if request.user.is_organisor %}
+               <li><a  href="{% url 'leads:category' %}">Categories</a></li>
                {% else %}
                {% endif %}
                <li>Signed in as: <span style="text-transform: capitalize;">{{request.user.username}}</span></li>
