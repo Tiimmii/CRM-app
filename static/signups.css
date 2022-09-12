@@ -19,13 +19,23 @@ body{
 .container{
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+
+}
+.team_img_wrapper {
+    width: 500px;
+    max-width: 100%;
+    height: 440px;
+}
+.team_img_wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 .box{
-    width: 650px;
+    width: 600px;
     height: auto;
-    border: 3px solid   #869ab8;
     border-radius: 9px;
     padding: 15px;
 }
@@ -62,6 +72,7 @@ body{
     font-weight: 400;
     background:  #335eea;
     color: white;
+    box-shadow: 0 0.5rem 1.5rem rgba(22, 28, 45, 0.1);
     
 
 }
@@ -69,15 +80,14 @@ body{
     color: white;
     background-color: #2b50c7;
     transform: translateY(-3px);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 .login{
-    text-decoration: underline 2px black solid;
+    text-decoration: underline 1px;
     text-align: center;
+    color: #506690;
 
 }
-.login a{
-    transition: 0.5s ease-in-out;
-}
 .login a:hover{
-    color: rgb(124, 142, 230);
+    color:  #335eea;
 }

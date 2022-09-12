@@ -1,15 +1,18 @@
 {% extends 'registration/signup.html' %}
 {% load tailwind_filters %}
+{% load static %}
 {% block content %}
 <body>
     <div class="container">
         <div class="box">
-            <h1>Login To Get Started &#128519;</h1>
+            <div class="span">
+                <h1>Login To <span>Timmi's CRM.</span></h1>
+            </div>
             <form method="post">
                 {% csrf_token %}
                 {{form|crispy}}
                 <div class="bottom">
-                    <button class="w-full text-black hover:bg-blue-500  px-3 py-2 rounded-md">Login</button>
+                    <button class="w-full hover:px-3 py-2 rounded-md">Login</button>
                 </div>
                 <div class="login">
                     <a href="{% url 'passwordreset' %}">Forgot Password?</a><br>
@@ -17,6 +20,9 @@
                 </div>
             </form>
         </div>
+        <div class="team_img_wrapper">
+            <img src="{% static 'images/team.svg' %}" alt="team-img" />
+          </div>
     </div>
 </body>
 {% endblock %}
