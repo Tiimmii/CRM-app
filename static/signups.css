@@ -40,20 +40,29 @@ body{
     padding: 15px;
 }
 .box h1{
-    font-weight: 600;
+    font-weight: 300;
     font-size: 30px;
     margin-bottom: 10px;
     text-align: center;
 }
+.box h2{
+    font-weight: 300;
+    font-size: 27px;
+    margin-bottom: 10px;
+    text-align: center; 
+    text-transform: capitalize;  
+}
 .span span{
     color: #335eea;
+    font-size: 28px;
+    font-weight: 700;
 }
 
 .box h1::after{
     content: '';
     display: block;
     width: 500px;
-    height: 4px;
+    height: 3px;
     margin: auto;
     background: black;
     border-radius: 3px;
