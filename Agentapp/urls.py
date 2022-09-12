@@ -7,6 +7,6 @@ urlpatterns=[
     path('agentcreate/', Agent_create.as_view(), name='agent-create'),
     path('agentupdate/<str:pk>/', Agent_update.as_view(), name='agent-update'),
     path('agentdelete/<str:pk>/', Agent_delete.as_view(), name='agent-delete'),
-    path('agentdetail/<str:pk>/', Agent_details.as_view(), name='agent-details')
+    path('agentdetail/<str:pk>/', Agent_details.as_view(), name='agent-details'),
 
 ]

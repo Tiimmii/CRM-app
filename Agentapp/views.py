@@ -3,7 +3,7 @@ from unicodedata import category
 from django.shortcuts import reverse, redirect
 from django.views import generic
 from CRMapp.models import Agent, Category
-from .forms import AgentCreationForm
+from .forms import AgentCreationForm, AgentUpdateForm
 from CRMapp.mixins import ManualLoginRequiredMixin
 from django.core.mail import send_mail
 
@@ -54,12 +54,12 @@ class Agent_create(ManualLoginRequiredMixin, generic.CreateView):
 
 class Agent_update(ManualLoginRequiredMixin, generic.UpdateView):
     template_name = 'agent-update.html'
-    form_class = AgentCreationForm
+    form_class = AgentUpdateForm
     queryset = Agent.objects.all()
-    context_object_name = 'agents'
+    context_object_name = 'agents' 
 
     def get_success_url(self):
-        return reverse('agents:agent-list')
+        return reverse('agents:agent-list', kwargs = {'pk':self.get_object().id})
 
 class Agent_delete(ManualLoginRequiredMixin, generic.DeleteView):
     template_name = 'agent-delete.html'
