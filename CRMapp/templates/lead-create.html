@@ -1,17 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create ure Lead</title>
-</head>
+{% extends 'registration/signup.html' %}
+{% load tailwind_filters %}
+{% load static %}
+{% block content %}
+<title>Create a Lead</title>
 <body>
-    <a href="{% url 'leads:lead-list' %}"><p>Go back</p></a>
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="submit">
-    </form>
+    <div class="container">
+        <div class="box">
+            <div class="span">
+                <h1>Create a <span>Lead.</span></h1>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                {{form|crispy}}
+                <div class="bottom">
+                    <button class="w-full hover:px-3 py-2 rounded-md">Create Lead</button>
+                </div>
+                <div class="login">
+                    <a href="{% url 'leads:lead-list' %}">Go Back?</a><br>
+                </div>
+            </form>
+        </div>
+        <div class="team_img_wrapper">
+            <img src="{% static 'images/team.svg' %}" alt="team-img" />
+          </div>
+    </div>
 </body>
-</html>
+{% endblock %}

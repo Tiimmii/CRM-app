@@ -1,11 +1,15 @@
+/* ==== "Inter" FONT-FAMILY FROM FONTS.GOOGLE.COM  ==== */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    /* font-family: "Trebuchet MS", Helvetica, sans-serif; */
+    font-family: "Inter", sans-serif;
 }
 body{
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    /* font-family: "Trebuchet MS", Helvetica, sans-serif; */
+    font-family: "Inter", sans-serif;
     background: linear-gradient(to bottom, rgba(247, 252, 252, 0),rgb(220, 220, 230));
     background-size: cover;
     min-height: 100vh;

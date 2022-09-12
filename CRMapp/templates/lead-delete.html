@@ -1,18 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create ure Lead</title>
-</head>
+{% extends 'registration/signup.html' %}
+{% load tailwind_filters %}
+{% load static %}
+{% block content %}
+<title>Delete Lead</title>
 <body>
-    <a href="{% url 'leads:lead-detail' leads.id %}"><p>Go back</p></a>
-    <h2>Are you sure you want to delete this lead?</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button>yes</button>  <a href="{% url 'leads:lead-detail' leads.id %}"><button>No</button></a>
-    </form>
+    <div class="container">
+        <div class="box">
+            <div class="span">
+                <h1>Delete Lead <span>{{leads.first_name}}.</span></h1>
+            </div>
+                <div class="span">
+                    <h2>Are You sure You want to delete lead <span>{{leads.first_name}} {{leads.last_name}}</span></h2>
+                </div>
+                <div class="bottom">
+                    <button class="w-full hover:px-3 py-2 rounded-md">Yes</button>
+                    <br>&nbsp;
+                    <a href="{% url 'leads:lead-list' %}"><button class="w-full hover:px-3 py-2 rounded-md">No</button></a>
+                </div>
+        </div>
+        <div class="team_img_wrapper">
+            <img src="{% static 'images/team.svg' %}" alt="team-img" />
+          </div>
+    </div>
 </body>
-</html>
+{% endblock %}

@@ -1,28 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lead details</title>
-</head>
+{% extends 'registration/signup.html' %}
+{% load tailwind_filters %}
+{% load static %}
+{% block content %}
+<title>Lead Details</title>
 <body>
-    <a href="{% url 'leads:lead-list' %}"><p>Go back</p></a>
-    <h3>
-        first_name: {{leads.first_name}} <br>
-        last_name: {{leads.last_name}}<br>
-        age: {{leads.age}}<br>
-        agent: {{leads.agent.user.email}}<br>
-        created_at: {{leads.created_at}}<br>    
-    </h3>
-    <br>
-    {% if request.user.is_organisor %}
-    <p> 
-        <a href="{% url 'leads:lead-update' leads.id %}"><h3>update Lead</h3></a> <a href="{% url 'leads:agentassign' leads.id %}"><h3>Change Lead Agent</h3></a>  <a href="{% url 'leads:lead-delete' leads.id %}"><h3>Delete Lead</h3></a>
-        
-    </p>
-    {% else %}
-    <a href="{% url 'leads:lead-agentupdate' leads.id %}"><h3>update Lead</h3></a>
-    {% endif %}
+    <div class="container">
+        <div class="box">
+            <div class="span">
+                <h1>Details of Lead <span>{{leads.first_name}}</span></h1>
+            </div>
+            <h2>
+                first_name: {{leads.first_name}} <br>
+                last_name: {{leads.last_name}}<br>
+                age: {{leads.age}}<br>
+                Detail: {{leads.detail}}<br>
+                agent: {{leads.agent.user.email}}<br>
+                created_at: {{leads.created_at}}<br>    
+            </h2>
+                <div class="bottom">
+                    <a href="{% url 'leads:lead-update' leads.id %}"><button class="w-full hover:px-3 py-2 rounded-md">Update Lead</button></a>
+                    <br>&nbsp;
+                    <a href="{% url 'leads:lead-delete' leads.id %}"><button class="w-full hover:px-3 py-2 rounded-md">Delete Lead</button></a>
+                </div>
+                <div class="login">
+                    <a href="{% url 'leads:lead-list' %}">Go Back?</a><br>
+                </div>
+        </div>
+        <div class="team_img_wrapper">
+            <img src="{% static 'images/team.svg' %}" alt="team-img" />
+          </div>
+    </div>
 </body>
+{% endblock %}
 </html>

@@ -49,13 +49,15 @@ body{
     font-weight: 300;
     font-size: 27px;
     margin-bottom: 10px;
-    text-align: center; 
+    text-align: center;
+    display: inline; 
     text-transform: capitalize;  
 }
 .span span{
     color: #335eea;
     font-size: 28px;
     font-weight: 700;
+    text-transform: capitalize;
 }
 
 .box h1::after{
