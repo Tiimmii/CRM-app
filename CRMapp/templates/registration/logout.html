@@ -1,5 +1,6 @@
 {% extends 'registration/landing-page.html' %}
 {% block content %}
+{% load static %}
 <body>
     <body>
         <!-- ==== HEADER ==== -->
@@ -7,7 +8,7 @@
           <!-- ==== NAVBAR ==== -->
           <nav class="nav">
             <div class="logo">
-              <h2>Timmi's kit.</h2>
+              <h2>Timmi's CRM.</h2>
             </div>
     
             <div class="nav_menu" id="nav_menu">
@@ -42,9 +43,9 @@
             <div class="grid-cols-2">
               <div class="grid-item-1">
                 <h1 class="main-heading">
-                  Welcome to <span>Timmi's kit.</span>
+                  Logged out from 
                   <br />
-                  Develop anything.
+                  <span>Timmi's CRM.</span>
                 </h1>
                 <p class="info-text">
                   You have successfully Logged out. 
@@ -61,7 +62,7 @@
               </div>
               <div class="grid-item-2">
                 <div class="team_img_wrapper">
-                  <img src="static/images/team.svg" alt="team-img" />
+                  <img src="{% static 'images/team.svg' %}" alt="team-img" />
                 </div>
               </div>
             </div>
