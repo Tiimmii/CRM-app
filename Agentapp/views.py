@@ -56,10 +56,10 @@ class Agent_update(ManualLoginRequiredMixin, generic.UpdateView):
     template_name = 'agent-update.html'
     form_class = AgentUpdateForm
     queryset = Agent.objects.all()
-    context_object_name = 'agents' 
+    context_object_name = 'agents'
 
     def get_success_url(self):
-        return reverse('agents:agent-list', kwargs = {'pk':self.get_object().id})
+        return reverse('agents:agent-list')
 
 class Agent_delete(ManualLoginRequiredMixin, generic.DeleteView):
     template_name = 'agent-delete.html'
