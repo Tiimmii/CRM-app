@@ -5,6 +5,28 @@ from .forms import LeadCreateForm, LeadSignUpForm, AgentLeadUpdateForm, AgentAss
 from django.core.mail import send_mail
 from .mixins import ManualLoginRequiredMixin, AgentLoginRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView, LogoutView
+
+class CustomLoginView(LoginView):
+    template_name = 'registration/login.html'
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        return reverse('leads:lead-list')
+
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('leads:lead-list')
+        return super(CustomLoginView, self).get(*args, **kwargs)
+
+class CustomLogoutView(LogoutView):
+    template_name = 'registration/logout.html'
+
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return super(CustomLogoutView, self).get(*args, **kwargs)
+        else:
+            return redirect('login')
 
 class Landing_page(generic.TemplateView):
     template_name = 'registration/landing-page.html'
