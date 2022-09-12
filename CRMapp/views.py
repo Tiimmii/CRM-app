@@ -136,7 +136,7 @@ class Agent_Lead_update(AgentLoginRequiredMixin, generic.UpdateView):
         return super(Agent_Lead_update, self).form_valid(form)
 
     
-class Lead_delete(LoginRequiredMixin, generic.DeleteView):
+class Lead_delete(ManualLoginRequiredMixin, generic.DeleteView):
     template_name = 'lead-delete.html'
     queryset = Lead.objects.all()
     context_object_name = 'leads'
@@ -208,12 +208,11 @@ class Lead_category_Detail(ManualLoginRequiredMixin, generic.DetailView):
             queryset = Category.objects.filter(user = self.request.user)
         return queryset
 
-class New_lead_category(ManualLoginRequiredMixin, generic.ListView):
+class New_lead_category(LoginRequiredMixin, generic.ListView):
     template_name = 'new_lead_category.html'
 
     def get_queryset(self):
-        if self.request.user.is_organisor:
-            queryset = Category.objects.filter(user = self.request.user)
+        queryset = Category.objects.filter(user = self.request.user)
         
         return queryset
 
@@ -221,6 +220,8 @@ class New_lead_category(ManualLoginRequiredMixin, generic.ListView):
         context = super(New_lead_category, self).get_context_data(**kwargs)
         if self.request.user.is_organisor:
             queryset = Lead.objects.filter(organisation = self.request.user.auto)
+        else:
+            queryset = Lead.objects.filter(agent = self.request.user.agent)
         context.update({
             'new_leads':queryset.filter(category__isnull=True),
 

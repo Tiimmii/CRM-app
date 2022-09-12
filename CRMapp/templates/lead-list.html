@@ -19,6 +19,7 @@
                {% if request.user.is_organisor %}
                <li><a  href="{% url 'agents:agent-list' %}">Agents</a></li>
                {% else %}
+               <li><a href="{% url 'leads:new-leadcategory' %}">New Leads</a></li>
                {% endif %}
                {% if request.user.is_organisor %}
                <li><a  href="{% url 'leads:category' %}">Categories</a></li>
@@ -42,7 +43,7 @@
         <div class="lead">
                 {% for lead in leads %}
                 <p>
-                    <a class="text-2xl">{{lead.first_name}}</a><br>
+                    <a class="text-2xl" style="text-transform: capitalize;" >{{lead.first_name}}</a><br>
                     <a>
                         {{lead.description|truncatewords:30}}
                     </a><br>

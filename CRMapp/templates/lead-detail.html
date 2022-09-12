@@ -18,8 +18,12 @@
                 created_at: {{leads.created_at}}<br>    
             </h2>
                 <div class="bottom">
+                    {% if request.user.is_organisor %}
                     <a href="{% url 'leads:lead-update' leads.id %}"><button class="w-full hover:px-3 py-2 rounded-md">Update Lead</button></a>
                     <a href="{% url 'leads:lead-delete' leads.id %}"><button class="w-full hover:px-3 py-2 rounded-md">Delete Lead</button></a>
+                    {% else %}
+                    <a href="{% url 'leads:lead-agentupdate' leads.id %}"><button class="w-full hover:px-3 py-2 rounded-md">Update Lead</button></a>
+                    {% endif %}
                 </div>
                 <div class="login">
                     <a href="{% url 'leads:lead-list' %}">Go Back?</a><br>
