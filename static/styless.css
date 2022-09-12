@@ -74,20 +74,15 @@ nav > span{
     padding: 2px;
     border-radius: 7px;
 }
-.search button{
-
-    color: black solid;
-    border: none;
-    transition: 0.2s ease-in-out;
-    background-color: rgba(247, 252, 252, 0);
-}
-.search button:hover{
-    color:rgb(124, 142, 230);
-}
 .search-icon{
     transform: rotate(-45deg);
     font-size:25px;
     margin-top: 3px;
+    border: none;
+}
+.search-icon:hover{
+    color:rgb(124, 142, 230);
+    border: none;
 }
 .background-img{
     background: url(images/team.svg);

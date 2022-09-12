@@ -41,16 +41,24 @@ class Lead_list(LoginRequiredMixin, generic.ListView):
         else:
             queryset = Lead.objects.filter(agent = self.request.user.agent) 
         return queryset
+    
 
-    # getting the leads with null agents
+    # getting the leads with null agents and implementing search input
 
     def get_context_data(self, **kwargs):
         context = super(Lead_list, self).get_context_data(**kwargs)
         if self.request.user.is_organisor:
-            queryset=Lead.objects.filter(organisation=self.request.user.auto, agent__isnull=True)
-            context.update(
+            queryset = Lead.objects.filter(organisation = self.request.user.auto)
+        else:
+            queryset = Lead.objects.filter(agent = self.request.user.agent)
+        search_input = self.request.GET.get('search') or ''
+        if search_input:
+            context['leads'] = queryset.filter(first_name__icontains = search_input)
+            context['search'] = search_input
+           
+        context.update(
                 {
-                    'unassigned_leads':queryset,
+                    'unassigned_leads': queryset.filter(agent__isnull=True),
                 }
             )
         return context

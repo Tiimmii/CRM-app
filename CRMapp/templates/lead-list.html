@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'styless.css' %}">
     <title>CRMapp</title>
 </head>
 <body>
@@ -29,8 +29,10 @@
             </ul>
         </div>
             <div class="search">
-                <input type="search" placeholder=" search">
-                <button><div class="search-icon">&#9906;</div></button>
+                <form method="get">
+                    <input type="search" placeholder=" search" name="search" value="{{search}}">
+                    <button><div class="search-icon">&#9906;</div></button>
+                </form>
             </div>
     </nav>
 <div class="background-img">
