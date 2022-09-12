@@ -12,7 +12,6 @@ body{
     font-family: "Inter", sans-serif;
     /* background: linear-gradient(to bottom, rgba(247, 252, 252, 0),rgb(220, 220, 230)); */
     background:  #fafbfb;
-    background-image: url();
     background-size: cover;
     min-height: 100vh;
     margin: 10px;
@@ -24,9 +23,15 @@ nav{
     padding: 2px 4%;
     align-items: baseline;
 }
+nav > span{
+    font-weight: 700;
+    font-size: 28px;
+    color: #335eea;
+    text-transform: capitalize;
+}
 .hello{
     margin-top: 2%;
-    font-weight: 600;
+    font-weight: 300;
     font-size: 30px;
 }
 .nav-contents{
@@ -83,9 +88,24 @@ nav{
     font-size:25px;
     margin-top: 3px;
 }
+.background-img{
+    background: url(images/team.svg);
+    background-size: cover;
+    height: 90%;
+    width:  85%;
+    max-width: 100%;
+    align-items: center;
+    object-fit: contain; 
+}
+.background-img img{
+    width: 500px;
+    max-width: 100%;
+    height: 440px;
+    object-fit: contain; 
+}
 .container{
     margin: 95px;
-    height: 60%;
+    min-height: 100vh;
 }
 #text-p{
     font-weight: 400;
@@ -140,7 +160,7 @@ nav{
     color: rgb(124, 142, 230);
 }
 .lead p:hover{
-    background-color: rgba(164, 165, 170, 0.2);
+    background-color: #fafbfb;
 }
 .lead span{
     transition: 0.3s ease-in-out;
@@ -150,18 +170,23 @@ nav{
 }
 .bottom{
     width: 50%;
-    margin-left: 17%;
-    margin-top: 20px;
+    margin-left: 24%;
 }
 .bottom button{
     transition: 0.3s ease-in-out;
     height: 50px;
     font-size: 20px;
     font-weight: 400;
-    border: 2px black solid;
+    color: white;
+    margin-top: 70%;
+    background:  #335eea;
+    
 }
 .bottom button:hover{
     color: white;
+    background-color: #2b50c7;
+    transform: translateY(-3px);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 .unnasigned{
     margin-top: 10px;

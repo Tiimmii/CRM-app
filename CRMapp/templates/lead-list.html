@@ -11,7 +11,7 @@
 </head>
 <body>
     <nav>
-        <h1 class="hello">Welcome to djcrm&#128516;</h1>
+        <h1 class="hello">Welcome to</h1> <span>Timmi's CRM.</span>
         <div class="nav-contents">
             <ul>
                <li><a href="{% url 'logout' %}">Logout</a></li>
@@ -20,7 +20,6 @@
                {% else %}
                {% endif %}
                <li>Signed in as: <span style="text-transform: capitalize;">{{request.user.username}}</span></li>
-               <li><a>PortFolio</a></li>
             </ul>
         </div>
             <div class="search">
@@ -28,43 +27,45 @@
                 <button><div class="search-icon">&#9906;</div></button>
             </div>
     </nav>
-<div class="container">
-    {% if request.user.is_organisor %}
-    <p id="text-p">These are the Leads under your organisation</p>
-    {% else %}
-    <p id="text-p">These are the Leads for your management</p>
-    {% endif %}
-    <div class="lead">
-            {% for lead in leads %}
+<div class="background-img">
+    <div class="container">
+        {% if request.user.is_organisor %}
+        <p id="text-p">These are the Leads under your organisation</p>
+        {% else %}
+        <p id="text-p">These are the Leads for your management</p>
+        {% endif %}
+        <div class="lead">
+                {% for lead in leads %}
+                <p>
+                    <a class="text-2xl">{{lead.first_name}}</a><br>
+                    <a>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur 
+                        iste tempora explicabo in expedita soluta doloribus consectetur.
+                    </a><br>
+                    <span class="text"><a href="{% url 'leads:lead-detail' lead.id %}">click to view this lead ->></a></span>
+                </p>
+                {% endfor %}
+            </div>
+    {% if unnassigned_leads.exists %}        
+    <p id="text-u" class="mt-5">Unnasigned Leads:</p>
+        <div class="unnasigned">
+            {% for unassigned in unassigned_leads %}
             <p>
-                <a class="text-2xl">{{lead.first_name}}</a><br>
-                <a>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur 
+                <a class="text-2xl">{{unnasigned.first_name}}</a><br>
+                <a>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur 
                     iste tempora explicabo in expedita soluta doloribus consectetur.
                 </a><br>
-                <span class="text"><a href="{% url 'leads:lead-detail' lead.id %}">click to view this lead ->></a></span>
+                <span class="text"><a href="{% url 'leads:agentassign' unnassigned.id %}">click to assign an agent to this lead ->></a></span>
             </p>
             {% endfor %}
         </div>
-{% if unnassigned_leads.exists %}        
-<p id="text-u" class="mt-5">Unnasigned Leads:</p>
-    <div class="unnasigned">
-        {% for unassigned in unassigned_leads %}
-        <p>
-            <a class="text-2xl">{{unnasigned.first_name}}</a><br>
-            <a>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur 
-                iste tempora explicabo in expedita soluta doloribus consectetur.
-            </a><br>
-            <span class="text"><a href="{% url 'leads:agentassign' unnassigned.id %}">click to assign an agent to this lead ->></a></span>
-        </p>
-        {% endfor %}
-    </div>
-    {% endif %}
-    <div class="bottom">
-        {% if request.user.is_organisor %}
-        <a href="#"><button class="w-full text-black hover:bg-blue-500  px-3 py-2 rounded-md">Create Lead?</button></a>
-        {% else %}
         {% endif %}
+        <div class="bottom">
+            {% if request.user.is_organisor %}
+            <a href="#"><button class="w-full text-black hover:bg-blue-500  px-3 py-2 rounded-md">Create Lead?</button></a>
+            {% else %}
+            {% endif %}
+        </div>
     </div>
 </div>
 </body>
