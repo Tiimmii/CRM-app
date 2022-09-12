@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     {% load static %}
-    <link rel="stylesheet" href=" {% static 'signup.css'%} ">
+    <link rel="stylesheet" href=" {% static 'signups.css'%} ">
  
     <title>Signup</title>
 </head>
@@ -16,12 +16,15 @@
     <div class="container">
     <form method="post">
         <div class="box">
-            <h1>SignUp To DJCRM &#128515; </h1>
+            <div class="span">
+                <h1>SignUp To <span>Timmi's CRM.</span></h1>
+            </div>
+            
             <form method="post">
                 {% csrf_token %}
                 {{ form|crispy }}
             <div class="bottom">
-                <button class="w-full text-black hover:bg-blue-500  px-3 py-2 rounded-md">SignUp</button>
+                <button class="w-full hover: px-3 py-2 rounded-md">SignUp</button>
                 <div class="login">
                     <a href="{% url 'login' %}"><h3>Already have an account?</h3></a>
                 </div>

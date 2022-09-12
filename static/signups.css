@@ -1,12 +1,17 @@
+/* ==== "Inter" FONT-FAMILY FROM FONTS.GOOGLE.COM  ==== */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    /* font-family: "Trebuchet MS", Helvetica, sans-serif; */
+    font-family: "Inter", sans-serif;
 }
 body{
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-    background: linear-gradient(to bottom, rgba(247, 252, 252, 0), rgb(220, 220, 230));
+    /* font-family: "Trebuchet MS", Helvetica, sans-serif; */
+    font-family: "Inter", sans-serif;
+    /* background: linear-gradient(to bottom, rgba(247, 252, 252, 0), rgb(250, 260, 240)); */
+    background:  #fafbfb;
     background-size: cover;
     min-height: 100vh;
     margin: 10px;
@@ -20,16 +25,20 @@ body{
 .box{
     width: 650px;
     height: auto;
-    border: 3px solid black;
+    border: 3px solid   #869ab8;
     border-radius: 9px;
     padding: 15px;
 }
 .box h1{
-    text-align: center;
     font-weight: 600;
     font-size: 30px;
     margin-bottom: 10px;
+    text-align: center;
 }
+.span span{
+    color: #335eea;
+}
+
 .box h1::after{
     content: '';
     display: block;
@@ -51,10 +60,15 @@ body{
     height: 50px;
     font-size: 20px;
     font-weight: 400;
-    border: 3px black solid;
+    background:  #335eea;
+    color: white;
+    
+
 }
 .bottom button:hover{
     color: white;
+    background-color: #2b50c7;
+    transform: translateY(-3px);
 }
 .login{
     text-decoration: underline 2px black solid;
