@@ -10,9 +10,9 @@
                 <h1>View Lead <span>Categories.</span></h1>
             </div>
                 <div class="bottom">
-                    <a href="#"><button class="w-full hover:px-3 py-2 rounded-md">New Leads</button></a>
+                    <a href="{% url 'leads:new-leadcategory' %}"><button class="w-full hover:px-3 py-2 rounded-md">New Leads</button></a>
                     {% for categories in category reversed %}
-                    <button class="w-full hover:px-3 py-2 rounded-md">{{categories.name}}</button>
+                    <a href="{% url 'leads:category-detail' categories.id %}"><button class="w-full hover:px-3 py-2 rounded-md">{{categories.name}}</button></a>
                     {% endfor %}
                 </div>
                 <div class="login">
