@@ -25,7 +25,7 @@
                <li><a  href="{% url 'leads:category' %}">Categories</a></li>
                {% else %}
                {% endif %}
-               <li>Signed in as: <span style="text-transform: capitalize;">{{request.user.username}}</span></li>
+               <li>Logged in as: <span style="text-transform: capitalize;">{{request.user.username}}</span></li>
             </ul>
         </div>
             <div class="search">
@@ -45,7 +45,7 @@
         <div class="lead">
                 {% for lead in leads %}
                 <p>
-                    <a class="text-2xl" style="text-transform: capitalize;" >{{lead.first_name}}</a><br>
+                    <a class="text-3xl" style="text-transform: capitalize;" >{{lead.first_name}}</a><br>
                     <a>
                         {{lead.description|truncatewords:30}}
                     </a><br>

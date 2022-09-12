@@ -1,6 +1,7 @@
 {% extends 'registration/landing-page.html' %}
 {% block content %}
 {% load static %}
+<title>Logged out successfully</title>
 <body>
     <body>
         <!-- ==== HEADER ==== -->
@@ -49,12 +50,12 @@
                 </h1>
                 <p class="info-text">
                   You have successfully Logged out. 
-                  Sign in to continue or Signup to create a new account
+                  Login to continue or Signup to create a new account
                 </p>
     
                 <div class="btn_wrapper">
                   <a href="{% url 'login' %}"><button class="btn view_more_btn">
-                    Sign in <i class="ri-arrow-right-line"></i>
+                    Login <i class="ri-arrow-right-line"></i>
                   </button></a>
     
                   <a href="{% url 'signup' %}"><button class="btn documentation_btn">Signup</button></a>
@@ -138,7 +139,7 @@
                   </svg>
                 </div>
                 <div class="featured_info">
-                  <span>Leads can be Products, Services, Customers</span>
+                  <span>Leads can be Products, Services or Customers</span>
                   <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Non
                     nostrum voluptate totam ipsa corrupti vero!
