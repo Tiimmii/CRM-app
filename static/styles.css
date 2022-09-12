@@ -10,7 +10,9 @@
 body{
     /* font-family: "Trebuchet MS", Helvetica, sans-serif; */
     font-family: "Inter", sans-serif;
-    background: linear-gradient(to bottom, rgba(247, 252, 252, 0),rgb(220, 220, 230));
+    /* background: linear-gradient(to bottom, rgba(247, 252, 252, 0),rgb(220, 220, 230)); */
+    background:  #fafbfb;
+    background-image: url();
     background-size: cover;
     min-height: 100vh;
     margin: 10px;
@@ -42,6 +44,7 @@ nav{
     font-weight: 400;
     font-size: 20px;
     transform: 0.2s;
+    color:  #506690;
 }
 .nav-contents ul a::after{
     content: '';
@@ -50,7 +53,7 @@ nav{
     height: 3px;
     transition: 0.5s ease-in-out;
     margin: auto;
-    background: rgb(124, 142, 230);
+    background: #2b50c7;
 }
 .nav-contents ul a:hover::after{
     width:40px;

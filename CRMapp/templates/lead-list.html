@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'styless.css' %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
     <title>CRMapp</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
                <li><a  href="{% url 'agents:agent-list' %}">Agents</a></li>
                {% else %}
                {% endif %}
-               <li>Signed in as: <a style="text-transform: capitalize;">{{request.user.username}}</a></li>
+               <li>Signed in as: <span style="text-transform: capitalize;">{{request.user.username}}</span></li>
                <li><a>PortFolio</a></li>
             </ul>
         </div>
@@ -28,25 +28,44 @@
                 <button><div class="search-icon">&#9906;</div></button>
             </div>
     </nav>
+<div class="container">
     {% if request.user.is_organisor %}
-    <h1>This are all of our leads under ure organisation:</h1></a>
-    <a href="{% url 'leads:category' %}"><h2>view Lead categories</h2></a>
+    <p id="text-p">These are the Leads under your organisation</p>
     {% else %}
-    <h1>This are all your leads to manage</h1>
+    <p id="text-p">These are the Leads for your management</p>
     {% endif %}
-    {% for lead in leads %}
-    <a href="{% url 'leads:lead-detail' lead.id %}"><h3>{{lead.first_name}} {{lead.last_name}}</h3></a>
-    {% endfor %}
-    {% if request.user.is_organisor %}
-    <a href="{% url 'leads:lead-create' %}"><h3>Create Lead?</h3></a>
-    {% else %}
+    <div class="lead">
+            {% for lead in leads %}
+            <p>
+                <a class="text-2xl">{{lead.first_name}}</a><br>
+                <a>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur 
+                    iste tempora explicabo in expedita soluta doloribus consectetur.
+                </a><br>
+                <span class="text"><a href="{% url 'leads:lead-detail' lead.id %}">click to view this lead ->></a></span>
+            </p>
+            {% endfor %}
+        </div>
+{% if unnassigned_leads.exists %}        
+<p id="text-u" class="mt-5">Unnasigned Leads:</p>
+    <div class="unnasigned">
+        {% for unassigned in unassigned_leads %}
+        <p>
+            <a class="text-2xl">{{unnasigned.first_name}}</a><br>
+            <a>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur 
+                iste tempora explicabo in expedita soluta doloribus consectetur.
+            </a><br>
+            <span class="text"><a href="{% url 'leads:agentassign' unnassigned.id %}">click to assign an agent to this lead ->></a></span>
+        </p>
+        {% endfor %}
+    </div>
     {% endif %}
-    {% if unassigned_leads.exists %}
-    <h2>Unnassigned Leads:</h2>
-    {% for unassigned in unassigned_leads %}
-    <p><h3><a href="{% url 'leads:agentassign' unassigned.id %}">{{unassigned.first_name}} {{unassigned.last_name}}</a></h3></p>
-    {% endfor %}
-    {% else %}
-    {% endif %}
+    <div class="bottom">
+        {% if request.user.is_organisor %}
+        <a href="#"><button class="w-full text-black hover:bg-blue-500  px-3 py-2 rounded-md">Create Lead?</button></a>
+        {% else %}
+        {% endif %}
+    </div>
+</div>
 </body>
 </html>
