@@ -10,15 +10,15 @@
                 <h1>Details of Agent <span>{{agents.user.username}}</span></h1>
             </div>
             <h2>
-                Username:{{agents.user.username}}
+                Username:{{agents.user.username}}<br>
                 first_name: {{agents.user.first_name}} <br>
                 last_name: {{agents.user.last_name}}<br>
                 Details: {{agents.user.agent_details}}<br>
                 mail: {{agents.user.email}}<br>
             </h2>
                 <div class="bottom">
-                    <a href="{% url 'agents:agent-update' agents.id %}"><button class="w-full hover:px-3 py-2 rounded-md">Update Lead</button></a>
-                    <a href="{% url 'agents:agent-delete' agents.id %}"><button class="w-full hover:px-3 py-2 rounded-md">Delete Lead</button></a>
+                    <a href="{% url 'agents:agent-update' agents.id %}"><button class="w-full hover:px-3 py-2 rounded-md">Update Agent</button></a>
+                    <a href="{% url 'agents:agent-delete' agents.id %}"><button class="w-full hover:px-3 py-2 rounded-md">Delete Agent</button></a>
                 </div>
                 <div class="login">
                     <a href="{% url 'agents:agent-list' %}">Go Back?</a><br>

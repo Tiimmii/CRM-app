@@ -2,7 +2,7 @@ import random
 from unicodedata import category
 from django.shortcuts import reverse, redirect
 from django.views import generic
-from CRMapp.models import Agent, Category
+from CRMapp.models import Agent, Category, User
 from .forms import AgentCreationForm, AgentUpdateForm
 from CRMapp.mixins import ManualLoginRequiredMixin
 from django.core.mail import send_mail
@@ -52,7 +52,8 @@ class Agent_create(ManualLoginRequiredMixin, generic.CreateView):
 
         return super(Agent_create,self).form_valid(form)
 
-class Agent_update(ManualLoginRequiredMixin, generic.UpdateView):
+class Agent_update(ManualLoginRequiredMixin, generic.FormView):
+    model = User
     template_name = 'agent-update.html'
     form_class = AgentUpdateForm
     queryset = Agent.objects.all()
@@ -60,6 +61,13 @@ class Agent_update(ManualLoginRequiredMixin, generic.UpdateView):
 
     def get_success_url(self):
         return reverse('agents:agent-list')
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(Lead_create, self).get_form_kwargs(**kwargs)
+        kwargs.update({
+            'agent': Agent.objects.get(id=self.kwargs["pk"])
+        })
+        return kwargs
 
 class Agent_delete(ManualLoginRequiredMixin, generic.DeleteView):
     template_name = 'agent-delete.html'
