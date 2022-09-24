@@ -14,7 +14,6 @@ class User(AbstractUser):
     # To categorize users either as an organisor or as an agent
     is_organisor = models.BooleanField(default=True)
     is_agent = models.BooleanField(default=False)
-    agent_details = models.TextField(null = True, blank=True)
 
 class Lead(models.Model):
     first_name = models.CharField(max_length=20)

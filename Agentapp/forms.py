@@ -11,7 +11,6 @@ class AgentCreationForm(forms.ModelForm):
             'first_name',
             'last_name',
             'email',
-            'agent_details',
             )
 
 
@@ -20,7 +19,7 @@ class AgentUpdateForm(forms.Form):
     first_name = forms.CharField(max_length=20)
     last_name = forms.CharField(max_length = 20)
     email = forms.EmailField()
-    agent_details = forms.Textarea()
+
 
     def __init__(self, *args, **kwargs):
         agent = kwargs.pop('agent')
@@ -28,11 +27,9 @@ class AgentUpdateForm(forms.Form):
         first_name = User.objects.get(first_name = agent.user.first_name)
         last_name = User.objects.get(last_name = agent.user.last_name)
         email = User.objects.get(email = agent.user.email)
-        agent_details = User.objects.get(agent_details = agent.user.agent_details)
-        super(LeadCreateForm, self).__init__(*args, **kwargs)
+        super(AgentUpdateForm, self).__init__(*args, **kwargs)
         self.fields['username'].queryset = username
         self.fields['first_name'].queryset = first_name
         self.fields['last_name'].queryset = last_name
         self.fields['email'].queryset = email
-        self.fields['agent_details'].queryset = agent_details
     

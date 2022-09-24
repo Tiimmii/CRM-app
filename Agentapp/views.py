@@ -63,7 +63,7 @@ class Agent_update(ManualLoginRequiredMixin, generic.FormView):
         return reverse('agents:agent-list')
 
     def get_form_kwargs(self, **kwargs):
-        kwargs = super(Lead_create, self).get_form_kwargs(**kwargs)
+        kwargs = super(Agent_update, self).get_form_kwargs(**kwargs)
         kwargs.update({
             'agent': Agent.objects.get(id=self.kwargs["pk"])
         })
