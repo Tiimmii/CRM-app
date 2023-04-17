@@ -58,9 +58,20 @@ class Agent_update(ManualLoginRequiredMixin, View):
         user = User.objects.get(username=agent.user.username)
         return render(request, "agent-update.html", {"agent":agent, "user":user})
     
-    def post(self, request):
+    def post(self, request, pk):
         username = request.POST['username']
         first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        email = request.POST['email']
+        agent = Agent.objects.get(pk=pk)
+        agent.user.username = username
+        agent.user.first_name = first_name
+        agent.user.last_name = last_name
+        agent.user.email = email
+        agent.save()
+        return redirect('agents:agent-list')
+
+
     # queryset = Agent.objects.all()
     # context_object_name = 'agents'
 
