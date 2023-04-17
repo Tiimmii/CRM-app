@@ -1,11 +1,11 @@
 import random
-from unicodedata import category
-from django.shortcuts import reverse, redirect
+from django.shortcuts import reverse, redirect, render
 from django.views import generic
 from CRMapp.models import Agent, Category, User
 from .forms import AgentCreationForm, AgentUpdateForm
 from CRMapp.mixins import ManualLoginRequiredMixin
 from django.core.mail import send_mail
+from django.views import View
 
 class Agent_list(ManualLoginRequiredMixin, generic.ListView):
     template_name = 'agent-list.html'
@@ -52,22 +52,34 @@ class Agent_create(ManualLoginRequiredMixin, generic.CreateView):
 
         return super(Agent_create,self).form_valid(form)
 
-class Agent_update(ManualLoginRequiredMixin, generic.FormView):
-    model = User
-    template_name = 'agent-update.html'
-    form_class = AgentUpdateForm
-    queryset = Agent.objects.all()
-    context_object_name = 'agents'
+class Agent_update(ManualLoginRequiredMixin, View):
+    def get(self, request, pk):
+        agent = Agent.objects.get(pk=pk)
+        user = User.objects.get(username=agent.user.username)
+        return render(request, "agent-update.html", {"agent":agent, "user":user})
+    
+    def post(self, request):
+        username = request.POST['username']
+        first_name = request.POST['first_name']
+    # queryset = Agent.objects.all()
+    # context_object_name = 'agents'
 
-    def get_success_url(self):
-        return reverse('agents:agent-list')
+    # def get_success_url(self):
+    #     return reverse('agents:agent-list')
 
-    def get_form_kwargs(self, **kwargs):
-        kwargs = super(Agent_update, self).get_form_kwargs(**kwargs)
-        kwargs.update({
-            'agent': Agent.objects.get(id=self.kwargs["pk"])
-        })
-        return kwargs
+    # def get_form_kwargs(self, **kwargs):
+    #     kwargs = super(Agent_update, self).get_form_kwargs(**kwargs)
+    #     kwargs.update({
+    #         'agent': Agent.objects.get(id=self.kwargs["pk"])
+    #     })
+    #     return kwargs
+    # def get_object(self, pk):
+    #     return Agent.objects.get(pk=pk)
+    
+    # def get(self, request, pk):
+    #     agent = self.get_object(pk)
+    #     form = self.form_class.get_object(pk)
+    #     return render(request, self.template_name, {'form': form})
 
 class Agent_delete(ManualLoginRequiredMixin, generic.DeleteView):
     template_name = 'agent-delete.html'

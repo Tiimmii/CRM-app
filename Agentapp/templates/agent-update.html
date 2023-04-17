@@ -7,11 +7,14 @@
     <div class="container">
         <div class="box">
             <div class="span">
-                <h1>Update Agent <span>{{agents.user.username}}</span></h1>
+                <h1>Update Agent <span>{{agent.user.username}}</span></h1>
             </div>
-            <form method="post">
+            <form method="post" id="form">
                 {% csrf_token %}
-                {{form|crispy}}
+                <label>username</label><input type="text" name="username" placeholder="update agent username" value="{{user.username}}">
+                <label>first_name</label><input type="text" name="first_name" placeholder="update agent first_name" value="{{user.first_name}}">
+                <label>last_name</label><input type="text" name="last_name" placeholder="update agent last_name" value="{{user.last_name}}">
+                <label>email</label><input type="text" name="email" placeholder="update agent email" value="{{user.email}}">
                 <div class="bottom">
                     <button class="w-full hover:px-3 py-2 rounded-md">Update Agent</button>
                 </div>

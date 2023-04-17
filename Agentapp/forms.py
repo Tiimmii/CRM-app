@@ -21,15 +21,15 @@ class AgentUpdateForm(forms.Form):
     email = forms.EmailField()
 
 
-    def __init__(self, *args, **kwargs):
-        agent = kwargs.pop('agent')
-        username = User.objects.get(username = agent.user.username)
-        first_name = User.objects.get(first_name = agent.user.first_name)
-        last_name = User.objects.get(last_name = agent.user.last_name)
-        email = User.objects.get(email = agent.user.email)
-        super(AgentUpdateForm, self).__init__(*args, **kwargs)
-        self.fields['username'].queryset = username
-        self.fields['first_name'].queryset = first_name
-        self.fields['last_name'].queryset = last_name
-        self.fields['email'].queryset = email
+    # def __init__(self, *args, **kwargs):
+    #     agent = kwargs.pop('agent')
+    #     username = User.objects.get(username = agent.user.username)
+    #     first_name = User.objects.get(first_name = agent.user.first_name)
+    #     last_name = User.objects.get(last_name = agent.user.last_name)
+    #     email = User.objects.get(email = agent.user.email)
+    #     super(AgentUpdateForm, self).__init__(*args, **kwargs)
+    #     self.fields['username'].queryset = username
+    #     self.fields['first_name'].queryset = first_name
+    #     self.fields['last_name'].queryset = last_name
+    #     self.fields['email'].queryset = email
     
