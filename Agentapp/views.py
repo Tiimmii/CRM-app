@@ -64,11 +64,12 @@ class Agent_update(ManualLoginRequiredMixin, View):
         last_name = request.POST['last_name']
         email = request.POST['email']
         agent = Agent.objects.get(pk=pk)
-        agent.user.username = username
-        agent.user.first_name = first_name
-        agent.user.last_name = last_name
-        agent.user.email = email
-        agent.save()
+        user = User.objects.get(username = agent.user.username)
+        user.username = username
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        user.save()
         return redirect('agents:agent-list')
 
 
